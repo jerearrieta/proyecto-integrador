@@ -1,15 +1,14 @@
 # FUNCIONES (listar, buscar, agregar y eliminar)
-dispositivos = {
-    "Luz del living": {"tipo": "luz", "estado": "apagado"},
-    "Cámara puerta": {"tipo": "cámara", "estado": "encendido"}
-}
 
 def agregar_dispositivo(dispositivos, nombre, tipo, estado):
-    dispositivos[nombre] = {
-        "tipo": tipo,
-        "estado": estado
-    }
-    return nombre
+    if estado not in ("encendido", "apagado"):
+        return("Estado no valido")
+    else:
+        dispositivos[nombre] = {
+            "tipo": tipo,
+            "estado": estado
+        }
+        return nombre
 # print(agregar_dispositivo(dispositivos, "Calefactor", "climatización", "apagado"))
 
 def eliminar_dispositivo(dispositivos, nombre):
