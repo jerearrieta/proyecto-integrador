@@ -1,4 +1,4 @@
-from modulo_menu import *
+from mod
 
 dispositivos = {
     "Luz del living": {"tipo": "luz", "estado": "apagado"},
@@ -13,7 +13,7 @@ tipos_automatizaciones = {'luz': {"tipo_condicion" : "luminosidad"},
 
 def main():
     print('Bienvenido al menu de opciones. \n 1. Gestionar Dispositivos \n 2. Gestionar automatizaciones \n 3. Salir')
-    opcion = int(input(' ==> ')
+    opcion = int(input(' ==> '))
     primer_menu(opcion)
 
 
