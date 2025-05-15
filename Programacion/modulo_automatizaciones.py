@@ -1,14 +1,6 @@
 #agregar en main.py automatizaciones = [diccionario], tpos_automatizaciones = [diccionario]
 #eliminar inputs y ponerlos en main
-automatizaciones = {
-    
-}
-tipos_automatizaciones = {'luz': {"tipo_condicion" : "luminosidad"},
-    'temperatura': {"tipo_condicion" :"grados celsius"},
-    'cortinas y ventanas' : {"tipo_condicion" : ['luminosidad', 'grados celsius']}
-}
-
-def añadir_automatizacion():
+def añadir_automatizacion(automatizaciones, tipos_automatizaciones):
     nombre = input("Ingrese el nombre de la automatizacion")
     print("Elija el tipo de automatizacion: \n", *tipos_automatizaciones, sep =', ')
     tipo = input("==> ")
@@ -27,7 +19,7 @@ def añadir_automatizacion():
     else:
         print("Tipo no listado")
 
-def eliminar_automatizacion():
+def eliminar_automatizacion(automatizaciones):
     eleccion = input("Seguro que desea eliminar la automatizacion? s/n ")
     if eleccion != "s" and eleccion != "n":
         print("Eleccion invalida")
