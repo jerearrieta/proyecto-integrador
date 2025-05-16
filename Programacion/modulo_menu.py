@@ -24,12 +24,18 @@ def menu_dispositivos(dispositivos, opcion, nombre=None, tipo=None, estado=None)
     elif opcion == 4:
         print(listar_dispositivos(dispositivos))
 
-def menu_automatizaciones(automatizaciones, tipos_automatizaciones, opcion, nombre, tipo, eleccion, condicion_comienzo, condicion_corte):
+def menu_automatizaciones(automatizaciones, tipos_automatizaciones, dispositivos, opcion, nombre, tipo, dispositivo, eleccion, condicion_comienzo, condicion_corte, estado):
     if opcion not in (1, 2, 3):
         print ("Opcion inválida")
     elif opcion == 1:
-        añadir_automatizacion(automatizaciones, tipos_automatizaciones, nombre, tipo)
-        print(añadir_condiciones(automatizaciones, nombre, condicion_comienzo, condicion_corte))
+        if tipo in tipos_automatizaciones and dispositivo in dispositivos and estado in ("encendido", "apagado"):
+            añadir_automatizacion(automatizaciones, nombre, tipo, dispositivo)
+            print(añadir_condiciones(automatizaciones, nombre, dispositivo, condicion_comienzo, condicion_corte, estado))
+        elif tipo not in tipos_automatizaciones:
+            print("Tipo de automatizacion no existente")
+        elif dispositivo not in dispositivos:
+            print("Dispositivo no existente, agreguelo")
+        elif estado not in ("encendido", "apagado"):
+            print("Estado no valido")
     elif opcion == 2:
         print(eliminar_automatizacion(automatizaciones, eleccion))
-    print(automatizaciones)

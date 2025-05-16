@@ -45,22 +45,25 @@ def main():
         while True:
             print("--- Menú Automatizacion --- \n1. Agregar automatizacion \n2. Eliminar automatizacion \n3. Volver")
             opcion = introducir_opcion()
-            
+
             if opcion == 3:
                 break
             
-            nombre = tipo = eleccion = condicion_comienzo = condicion_corte = None
+            nombre = tipo = dispositivo = eleccion = condicion_comienzo = condicion_corte = estado = None
             if opcion == 1:
                 nombre = input("Introduzca el nombre de la automatizacion \n===> ")
                 print("Elija el tipo de automatizacion: \n", *tipos_automatizaciones, sep =', ')
                 tipo = input(" ===> ")
+                dispositivo = input("Ingrese el dispositivo a manipular ==> ")
                 print('Ingrese la condicion de comienzo en', tipos_automatizaciones[tipo]["tipo_condicion"])
                 condicion_comienzo = input(' ==> ')
                 print('Ingrese la condicion de corte en', tipos_automatizaciones[tipo]["tipo_condicion"])
                 condicion_corte = input(' ==> ')
+                estado = input("Ingrese el estado en el que debe estar el dispositivo cuando la condicion se cumpla (Encendido/Apagado) \n ===> ").lower()
+            
             elif opcion == 2:
                 eleccion = input("Desea eliminar la actualizacion s/n \n===> ")
             
-            menu_automatizaciones(automatizaciones, tipos_automatizaciones, opcion, nombre, tipo, eleccion, condicion_comienzo, condicion_corte)
+            menu_automatizaciones(automatizaciones, tipos_automatizaciones, dispositivos, opcion, nombre, tipo, dispositivo, eleccion, condicion_comienzo, condicion_corte, estado)
 if __name__ == "__main__":
     main()
