@@ -12,6 +12,13 @@ tipos_automatizaciones = {'luz': {"tipo_condicion" : "luminosidad"},
     'ventanas' : {"tipo_condicion" : 'grados celsius'}
 }
 
+def introducir_opcion():
+    try:
+        opcion = int(input(" ===> "))
+    except ValueError:
+        print("Debes ingresar un número.")
+    return opcion
+
 def main():
     print('--- Bienvenido al menu de opciones. ---\n 1. Gestionar dispositivos \n 2. Gestionar automatizaciones \n 3. Salir')
 
@@ -19,11 +26,7 @@ def main():
     if primer_menu(opcion) == True:
         while True:
             print("--- Menú Dispositivos --- \n1. Agregar dispositivo \n2. Eliminar dispositivo \n3. Buscar dispositivo \n4. Listar dispositivos \n5. Salir")
-            try:
-                opcion = int(input(" ===> "))
-            except ValueError:
-                print("Debes ingresar un número.")
-                continue
+            opcion = introducir_opcion()
 
             if opcion == 5:
                 break
@@ -41,11 +44,8 @@ def main():
     else:
         while True:
             print("--- Menú Automatizacion --- \n1. Agregar automatizacion \n2. Eliminar automatizacion \n3. Volver")
-            try:
-                opcion = int(input(" ===> "))
-            except ValueError:
-                print("Debes ingresar un número.")
-                continue
+            opcion = introducir_opcion()
+            
             if opcion == 3:
                 break
             
