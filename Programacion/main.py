@@ -37,6 +37,22 @@ def main():
                 nombre = input("Nombre del dispositivo: ")
 
             menu_dispositivos(dispositivos, opcion, nombre, tipo, estado)
-
+    else:
+        while True:
+            print("--- Menú Automatizacion --- \n1. Agregar automatizacion \n2.Eliminar automatizacion \n3.Volver")
+            try:
+                opcion = int(input(" ===> "))
+            except ValueError:
+                print("Debes ingresar un número.")
+                continue
+            if opcion == 3:
+                break
+            
+            if opcion == 1:
+                nombre = input("Introduzca el nombre de la automatizacion ===> ")
+                print("Elija el tipo de automatizacion: \n", *tipos_automatizaciones, sep =', ')
+                tipo = input(" ===> ")
+                print('Ingrese la condicion de comienzo en', *tipos_automatizaciones[tipo]["tipo_condicion"], sep =', ')
+    condicion_comienzo = input(' ==> ')
 if __name__ == "__main__":
     main()
