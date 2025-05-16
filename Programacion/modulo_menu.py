@@ -29,6 +29,7 @@ def menu_automatizaciones(automatizaciones, tipos_automatizaciones, opcion, nomb
         print ("Opcion inválida")
     elif opcion == 1:
         añadir_automatizacion(automatizaciones, tipos_automatizaciones, nombre, tipo)
-        añadir_condiciones(automatizaciones, tipos_automatizaciones, nombre, tipo, condicion_comienzo, condicion_corte)
+        añadir_condiciones(automatizaciones, nombre, condicion_comienzo, condicion_corte)
     elif opcion == 2:
         eliminar_automatizacion(automatizaciones, eleccion)
+    print(automatizaciones)

@@ -48,11 +48,18 @@ def main():
             if opcion == 3:
                 break
             
+            nombre = tipo = eleccion = condicion_comienzo = condicion_corte = None
             if opcion == 1:
-                nombre = input("Introduzca el nombre de la automatizacion ===> ")
+                nombre = input("Introduzca el nombre de la automatizacion \n===> ")
                 print("Elija el tipo de automatizacion: \n", *tipos_automatizaciones, sep =', ')
                 tipo = input(" ===> ")
                 print('Ingrese la condicion de comienzo en', *tipos_automatizaciones[tipo]["tipo_condicion"], sep =', ')
-    condicion_comienzo = input(' ==> ')
+                condicion_comienzo = input(' ==> ')
+                print('Ingrese la condicion de corte en', *tipos_automatizaciones[tipo]["tipo_condicion"], sep =', ')
+                condicion_corte = input(' ==> ')
+            elif opcion == 2:
+                eleccion = input("Desea eliminar la actualizacion s/n \n===> ")
+            
+            menu_automatizaciones(automatizaciones, tipos_automatizaciones, opcion, nombre, tipo, eleccion, condicion_comienzo, condicion_corte)
 if __name__ == "__main__":
     main()
