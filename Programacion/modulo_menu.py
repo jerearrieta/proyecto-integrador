@@ -2,15 +2,12 @@ from modulo_automatizaciones import *
 from modulo_dispositivos import *
 
 def primer_menu(opcion):
-    while True:
-        if opcion not in (1, 2, 3):
-            print("Opcion invalida")
-        elif opcion == 1:
-            return True
-        elif opcion == 2:
-            return False
-        else:
-            break
+    if opcion not in (1, 2, 3):
+        print("Opcion invalida")
+    elif opcion == 1:
+        return True
+    elif opcion == 2:
+        return False
 
 def menu_dispositivos(dispositivos, opcion, nombre=None, tipo=None, estado=None):
     if opcion not in (1, 2, 3, 4, 5):
