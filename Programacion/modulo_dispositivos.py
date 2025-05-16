@@ -18,7 +18,7 @@ def eliminar_dispositivo(dispositivos, nombre):
             del dispositivos[nombre]
             break
         else:
-            raise ValueError('Nombre inexistente')
+            return 'Nombre inexistente'
     return f'Dispositivo "{nombre}" eliminado correctamente.'
 
 def buscar_dispositivo(dispositivos, nombre):
@@ -26,7 +26,7 @@ def buscar_dispositivo(dispositivos, nombre):
         if dispositivo == nombre:
             return dispositivos[dispositivo]
     else:
-        raise ValueError('Nombre inexistente')
+        return 'Nombre inexistente'
 
 
 def listar_dispositivos(dispositivos):
