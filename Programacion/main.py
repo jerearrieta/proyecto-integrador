@@ -8,11 +8,12 @@ tipos_dispositivos = ["luz", "camara", "televisor", "garage", "lavadora"]
 automatizaciones = {}
 tipos_automatizaciones = {'luz': {"tipo_condicion" : "luminosidad"},
     'temperatura': {"tipo_condicion" :"grados celsius"},
-    'cortinas y ventanas' : {"tipo_condicion" : ['luminosidad', 'grados celsius']}
+    'cortinas' : {"tipo_condicion" : 'luminosidad'},
+    'ventanas' : {"tipo_condicion" : 'grados celsius'}
 }
 
 def main():
-    print('--- Bienvenido al menu de opciones. ---\n 1. Gestionar Dispositivos \n 2. Gestionar automatizaciones \n 3. Salir')
+    print('--- Bienvenido al menu de opciones. ---\n 1. Gestionar dispositivos \n 2. Gestionar automatizaciones \n 3. Salir')
 
     opcion = int(input(' ==> '))
     if primer_menu(opcion) == True:
@@ -39,7 +40,7 @@ def main():
             menu_dispositivos(dispositivos, opcion, nombre, tipo, estado)
     else:
         while True:
-            print("--- Menú Automatizacion --- \n1. Agregar automatizacion \n2.Eliminar automatizacion \n3.Volver")
+            print("--- Menú Automatizacion --- \n1. Agregar automatizacion \n2. Eliminar automatizacion \n3. Volver")
             try:
                 opcion = int(input(" ===> "))
             except ValueError:
@@ -53,9 +54,9 @@ def main():
                 nombre = input("Introduzca el nombre de la automatizacion \n===> ")
                 print("Elija el tipo de automatizacion: \n", *tipos_automatizaciones, sep =', ')
                 tipo = input(" ===> ")
-                print('Ingrese la condicion de comienzo en', *tipos_automatizaciones[tipo]["tipo_condicion"], sep =', ')
+                print('Ingrese la condicion de comienzo en', tipos_automatizaciones[tipo]["tipo_condicion"])
                 condicion_comienzo = input(' ==> ')
-                print('Ingrese la condicion de corte en', *tipos_automatizaciones[tipo]["tipo_condicion"], sep =', ')
+                print('Ingrese la condicion de corte en', tipos_automatizaciones[tipo]["tipo_condicion"])
                 condicion_corte = input(' ==> ')
             elif opcion == 2:
                 eleccion = input("Desea eliminar la actualizacion s/n \n===> ")
