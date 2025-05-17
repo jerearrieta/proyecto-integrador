@@ -1,8 +1,8 @@
 from modulo_menu import *
 
 dispositivos = {
-    "Luz del living": {"tipo": "luz", "estado": "apagado"},
-    "Cámara puerta": {"tipo": "cámara", "estado": "encendido"}
+    "luz del living": {"tipo": "luz", "estado": "apagado"},
+    "cámara puerta": {"tipo": "cámara", "estado": "encendido"}
 }
 tipos_dispositivos = ["luz", "camara", "televisor", "garage", "lavadora"]
 automatizaciones = {}
@@ -39,11 +39,11 @@ def main():
                 nombre = tipo = estado = None
 
                 if opcion == 1:
-                    nombre = input("Nombre del dispositivo: ")
-                    tipo = input("Tipo del dispositivo: ")
+                    nombre = input("Nombre del dispositivo: ").lower()
+                    tipo = input("Tipo del dispositivo: ").lower()
                     estado = input("Estado del dispositivo (Encendido/Apagado): ").lower()
                 elif opcion in (2, 3):
-                    nombre = input("Nombre del dispositivo: ")
+                    nombre = input("Nombre del dispositivo: ").lower()
 
                 menu_dispositivos(dispositivos, opcion, nombre, tipo, estado)
         else:
@@ -56,10 +56,19 @@ def main():
                 
                 nombre = tipo = dispositivo = eleccion = condicion_comienzo = condicion_corte = estado = None
                 if opcion == 1:
+                    if len(automatizaciones) >= 1:
+                        print('En esta version del programa solamente se puede agregar 1 automatizacion.')
+                        continue
+                    
                     nombre = input("Introduzca el nombre de la automatizacion \n===> ")
                     print("Elija el tipo de automatizacion: \n", *tipos_automatizaciones, sep =', ')
+
                     tipo = input(" ===> ")
-                    dispositivo = input("Ingrese el dispositivo a manipular ==> ")
+                    if tipo not in tipos_automatizaciones:
+                        print('Por favor ingresa un tipo valido')
+                        continue
+
+                    dispositivo = input("Ingrese el dispositivo a manipular ==> ").lower()
                     print('Ingrese la condicion de comienzo en', tipos_automatizaciones[tipo]["tipo_condicion"])
                     condicion_comienzo = input(' ==> ')
                     print('Ingrese la condicion de corte en', tipos_automatizaciones[tipo]["tipo_condicion"])

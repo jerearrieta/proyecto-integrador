@@ -9,10 +9,10 @@ def añadir_condiciones(automatizaciones, nombre, dispositivo, condicion_comienz
     return f'La automatizacion {nombre} tipo {automatizaciones[nombre]["tipo"]} con la condicion de comienzo {condicion_comienzo} y condicion de cierre {condicion_corte}, que producira el estado {estado} en {dispositivo} fue establecida correctamente'
 
 def eliminar_automatizacion(automatizaciones, eleccion):
-    while True:
         if eleccion not in ("s", "n"):
             print("Eleccion invalida")
         elif eleccion == "s":
             automatizaciones.clear()
-            break
-    return "La automatizacion ha sido eliminada correctamente"
+            return "La automatizacion ha sido eliminada correctamente"
+        else:
+            return 'La automatizacion no fue eliminada'
