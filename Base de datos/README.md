@@ -1,6 +1,6 @@
 ### 🗃️ Base de Datos
 
-Para el sistema SmartHome se identificaron tres entidades principales necesarias para representar la información de manera estructurada: `Usuario`, `Dispositivo` y `Automatización`.
+Para el sistema se identificaron tres entidades principales necesarias para representar la información de manera estructurada: `Usuario`, `Dispositivo` y `Automatización`.
 
 - **Usuario:** contiene los datos personales del usuario, como `nombre`, `apellido`, `email` y `contraseña`. El atributo `email` se considera una clave candidata, ya que debe ser único. Cada usuario puede tener varios dispositivos y automatizaciones asociadas.
 
