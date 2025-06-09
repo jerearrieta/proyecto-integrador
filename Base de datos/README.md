@@ -1,23 +1,56 @@
 ### 🗃️ Base de Datos
 
-El diseño de base de datos para el sistema parte de un enfoque relacional que contempla tres entidades principales: `Usuario`, `Dispositivo` y `Automatización`. Además, se utilizan relaciones intermedias (`Gestiona` y `Configura`) para representar las asociaciones entre entidades de forma más precisa.
+El diseño de base de datos para el sistema parte de un enfoque relacional basado en el **Diagrama Entidad-Relación versión 2**, que contempla tres entidades principales: `Usuario`, `Dispositivo` y `Automatización`. El modelo sigue las especificaciones exactas del diagrama E-R establecido.
 
-#### 📦 Entidades:
+#### 📦 Entidades Principales:
 
-- **Usuario:** contiene los datos personales del usuario, como `Nombre Usuario` y `Contraseña Usuario`. Esta entidad se relaciona con `Dispositivo` mediante la relación `Gestiona` (1:M) y con `Automatización` mediante `Configura` (N:M).
+- **Usuario:** contiene los datos personales del usuario. Utiliza `Nombre_Usuario` como clave primaria y `Contraseña_Usuario`, ambos con validaciones de longitud (8-15 caracteres).
 
-- **Dispositivo:** representa los dispositivos del hogar inteligente. Incluye atributos como `Id_Dispositivo`, `Nombre Dispositivo`, `Tipo` y `Estado`. Cada dispositivo puede ser gestionado por un único usuario.
+- **Dispositivo:** representa los dispositivos del hogar inteligente. Incluye `Id_Dispositivo` (clave primaria), `Nombre_Dispositivo`, `Estado`, `Tipo` y referencia al `Nombre_Usuario` propietario.
 
-- **Automatización:** permite definir reglas automáticas en el sistema. Posee atributos como `Id_Automatizacion`, `Condición Inicio`, `Condición Corte` y está vinculada tanto al `Usuario` como al `Dispositivo`.
+- **Automatización:** permite definir reglas automáticas en el sistema. Posee `Id_Automatizacion` (clave primaria), `Condicion_Inicio`, `Condicion_Corte` y está vinculada tanto al `Usuario` como al `Dispositivo` (relación N:M).
 
-#### 🔗 Relaciones:
+#### 🔗 Relaciones Principales:
 
-- **Gestiona (1:M):** un usuario puede gestionar múltiples dispositivos.
-- **Configura (N:M):** un usuario puede configurar varias automatizaciones y una automatización puede estar asociada a más de un usuario.
-- **Automatización - Dispositivo:** cada automatización también se vincula a un dispositivo específico mediante su `Id_Dispositivo`.
+- **Usuario → Dispositivo** (1:M) - *Relación "Gestiona"*: 
+  - Un usuario puede gestionar múltiples dispositivos
+  - Cada dispositivo pertenece a un único usuario
+  - Implementada mediante `Nombre_Usuario` (FK) en tabla DISPOSITIVO
 
-Este modelo permite representar escenarios como automatizaciones que controlan dispositivos específicos, configuradas por distintos usuarios. El diseño busca asegurar claridad, escalabilidad y preparación para ser implementado en un sistema gestor de base de datos relacional.
+- **Usuario + Dispositivo → Automatización** (N:M) - *Relación "Configura"*:
+  - Un usuario puede configurar múltiples automatizaciones
+  - Un dispositivo puede tener múltiples automatizaciones  
+  - Cada automatización involucra un usuario específico y un dispositivo específico
+  - Implementada mediante `Nombre_Usuario` e `Id_Dispositivo` (FK) en tabla AUTOMATIZACION
 
-![alt text](image.png)
+#### ✅ Formas Normales Aplicadas:
 
+- **1FN**: Eliminados atributos multivaluados
+- **2FN**: Sin dependencias parciales
+- **3FN**: Eliminadas dependencias transitivas
 
+#### 📋 Estructura del Modelo:
+
+**Tabla USUARIO:**
+- `Nombre_Usuario` (PK) - Clave primaria alfanumérica (8-15 caracteres)
+- `Contraseña_Usuario` - Campo obligatorio (8-15 caracteres)
+
+**Tabla DISPOSITIVO:**
+- `Id_Dispositivo` (PK) - Identificador único autoincremental
+- `Nombre_Dispositivo` - Nombre descriptivo del dispositivo
+- `Estado` - Estado actual (ENCENDIDO, APAGADO, MANTENIMIENTO, AHORRO_DE_ENERGIA)
+- `Tipo` - Tipo de dispositivo (luz, camara, puerta, ciclo, etc.)
+- `Nombre_Usuario` (FK) - Referencia al propietario
+
+**Tabla AUTOMATIZACION:**
+- `Id_Automatizacion` (PK) - Identificador único autoincremental
+- `Nombre_Usuario` (FK) - Referencia al usuario configurador
+- `Id_Dispositivo` (FK) - Referencia al dispositivo automatizado
+- `Condicion_Inicio` - Condición textual para activar la automatización
+- `Condicion_Corte` - Condición textual para desactivar la automatización
+
+#### 🔧 Implementación:
+
+Ver [Modelo Relacional Completo](modelo_relacional.md) para análisis detallado de normalización.
+
+![Diagrama del Modelo Relacional](image.png)
