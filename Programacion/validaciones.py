@@ -79,7 +79,7 @@ def introducir_opcion(valor):
         if valor.isdigit() and 4 > int(valor) > 0:
             return True
         print("Opcion no valida, por favor ingrese un numero dentro del rango indicado.\n")
-        False
+        return False
 
 def introducir_opcion_2(valor): 
         if valor.isdigit() and 6 > int(valor) > 0:
